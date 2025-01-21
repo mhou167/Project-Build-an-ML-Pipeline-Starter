@@ -34,7 +34,7 @@ def go(config: DictConfig):
 
     # Move to a temporary directory
     with tempfile.TemporaryDirectory() as tmp_dir:
-        #download works
+      
 
         if "download" in active_steps:
             # Download file and load in W&B
