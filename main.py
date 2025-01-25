@@ -54,7 +54,7 @@ def go(config: DictConfig):
         if "basic_cleaning" in active_steps:
              #Clean data and load new clean_Sample in W&B
             _ = mlflow.run(
-                os.path.join("src", "basic_cleaning"),
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 #("src", "basic_cleaning"),
                 "main",  
                 parameters={
@@ -71,7 +71,7 @@ def go(config: DictConfig):
         if "data_check" in active_steps:
            #run two tests
             _ = mlflow.run(
-                os.path.join("src", "data_check"),
+                os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
                 #("src", "data_check"),
                 "main",  
                 parameters={
@@ -112,7 +112,7 @@ def go(config: DictConfig):
             # Implement here #
             ##################
             _ = mlflow.run(
-                os.path.join("src", "train_random_forest"),
+                os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"),
                #("src", "train_random_forest"),
                 'main',
                 parameters={
