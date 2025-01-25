@@ -17,7 +17,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OrdinalEncoder, FunctionTransformer
+from sklearn.preprocessing import OrdinalEncoder, FunctionTransformer, OneHotEncoder
 
 import wandb
 from sklearn.ensemble import RandomForestRegressor
@@ -170,10 +170,11 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     # 2 - A OneHotEncoder() step to encode the variable
     non_ordinal_categorical_preproc = make_pipeline(
         # YOUR CODE HERE
-        SimpleImputer(strategy="most frequent"), #my code
-        OneHotEncoder(handle_unknown = "ignore")#my code
-        
+        SimpleImputer(strategy="most_frequent"), #my code
+        OneHotEncoder(handle_unknown="ignore"), 
+        ##my code 
     )
+
     ######################################
 
     # Let's impute the numerical columns to make sure we can handle missing values
@@ -236,8 +237,8 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     sk_pipe = Pipeline(
         steps =[
             # YOUR CODE HERE
-            ("preprocessor", preprocessor()), #mycode
-            ("random_forest", random_forest()), #mycode    
+            ("preprocessor", preprocessor), #mycode
+            ("random_forest", random_forest), #mycode    
         ]
     )
 
