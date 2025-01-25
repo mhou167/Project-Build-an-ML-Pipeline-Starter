@@ -54,7 +54,8 @@ def go(config: DictConfig):
         if "basic_cleaning" in active_steps:
              #Clean data and load new clean_Sample in W&B
             _ = mlflow.run(
-                ("src", "basic_cleaning"), 
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
+                #("src", "basic_cleaning"),
                 "main",  
                 parameters={
                     "input_artifact": "sample.csv:latest",
@@ -70,7 +71,8 @@ def go(config: DictConfig):
         if "data_check" in active_steps:
            #run two tests
             _ = mlflow.run(
-                ("src", "data_check"),
+                os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
+                #("src", "data_check"),
                 "main",  
                 parameters={
                     "csv": "clean_sample.csv:latest",
@@ -110,7 +112,8 @@ def go(config: DictConfig):
             # Implement here #
             ##################
             _ = mlflow.run(
-                ("src", "train_random_forest"),
+                os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"),
+               #("src", "train_random_forest"),
                 'main',
                 parameters={
                     "trainval_artifact": "trainval_data.csv:latest",
