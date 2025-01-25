@@ -74,7 +74,6 @@ def go(args):
     ######################################
     # Fit the pipeline sk_pipe by calling the .fit method on X_train and y_train
     # YOUR CODE HERE
-    #maybe don't need this step, delete maybe: sk_pipe = make_pipeline(SimpleImputer(), StandardScaler(), LogisticRegression())
     sk_pipe.fit(X_train, y_train)
     ######################################
 
